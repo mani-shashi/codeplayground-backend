@@ -21,12 +21,12 @@ const fileSchema = new mongoose.Schema({
     required: true,
   },
   content: {
-    type: String, // For files only
+    type: String,
     default: '',
   },
   path: {
     type: String,
-    required: true, // e.g., "src/App.js"
+    required: true,
   },
   createdAt: {
     type: Date,
