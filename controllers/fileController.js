@@ -1,7 +1,6 @@
 import mongoose from 'mongoose';
 import File from '../models/File.js';
 
-// Create a file or folder
 export const createFile = async (req, res) => {
   try {
     const { projectId, parentId, name, type, content, path } = req.body;
@@ -21,7 +20,6 @@ export const createFile = async (req, res) => {
   }
 };
 
-// Update file content or name
 export const updateFile = async (req, res) => {
   try {
     const { id } = req.params;
@@ -41,7 +39,6 @@ export const updateFile = async (req, res) => {
   }
 };
 
-// Delete file (and optionally, nested children)
 export const deleteFile = async (req, res) => {
   try {
     const { id } = req.params;
@@ -49,7 +46,6 @@ export const deleteFile = async (req, res) => {
     const file = await File.findById(id);
     if (!file) return res.status(404).json({ message: 'File not found' });
 
-    // Recursive delete if folder
     if (file.type === 'folder') {
       await deleteFolderAndChildren(id);
     } else {
@@ -62,7 +58,6 @@ export const deleteFile = async (req, res) => {
   }
 };
 
-// Recursive delete for folders
 const deleteFolderAndChildren = async (parentId) => {
   const children = await File.find({ parentId });
 

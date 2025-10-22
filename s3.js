@@ -3,7 +3,6 @@ import dotenv from 'dotenv';
 
 dotenv.config();
 
-// Initialize S3 client
 const s3 = new S3Client({
   region: process.env.AWS_REGION,
   credentials: {
@@ -12,9 +11,6 @@ const s3 = new S3Client({
   },
 });
 
-/**
- * Upload a file to S3
- */
 export const uploadToS3 = async (buffer, key, mimetype) => {
   const command = new PutObjectCommand({
     Bucket: process.env.S3_BUCKET,
@@ -29,9 +25,6 @@ export const uploadToS3 = async (buffer, key, mimetype) => {
   return { Location: s3Url };
 };
 
-/**
- * Delete a file from S3
- */
 export const deleteFromS3 = async (key) => {
   const command = new DeleteObjectCommand({
     Bucket: process.env.S3_BUCKET,
@@ -41,7 +34,7 @@ export const deleteFromS3 = async (key) => {
   await s3.send(command);
 };
 
-// --- ✅ TESTING SECTION ---
+// --- ✅ TESTING  ---
 
 const sleep = (ms) => new Promise(resolve => setTimeout(resolve, ms));
 
@@ -57,7 +50,7 @@ const runS3Test = async () => {
     console.log('📎 File URL:', data.Location);
 
     console.log('⏳ Sleeping for 20 seconds...');
-    await sleep(20000); // 20 seconds
+    await sleep(20000);
     console.log('✅ Done sleeping');
 
     console.log('🗑️ Deleting test file from S3...');

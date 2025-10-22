@@ -9,7 +9,7 @@ const fileSchema = new mongoose.Schema({
   parentId: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'File',
-    default: null, // null for root-level files/folders
+    default: null,
   },
   name: {
     type: String,

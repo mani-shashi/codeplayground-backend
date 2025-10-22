@@ -2,7 +2,6 @@ import request from 'supertest';
 import express from 'express';
 import { connectTestDB, disconnectTestDB, clearDB } from './setup.js';
 
-// Import routes directly
 import userRoutes from '../routes/userRoutes.js';
 import projectRoutes from '../routes/projectRoutes.js';
 import fileRoutes from '../routes/fileRoutes.js';

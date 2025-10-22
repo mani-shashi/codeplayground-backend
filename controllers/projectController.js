@@ -3,7 +3,6 @@ import mongoose from 'mongoose';
 import File from '../models/File.js';
 import Project from '../models/Project.js';
 
-// Create a new project
 export const createProject = async (req, res) => {
   try {
     const { userId, name, description } = req.body;
@@ -20,7 +19,6 @@ export const createProject = async (req, res) => {
   }
 };
 
-// Get all projects for a user
 export const getProjectsByUser = async (req, res) => {
   try {
     const { userId } = req.params;
@@ -32,7 +30,6 @@ export const getProjectsByUser = async (req, res) => {
   }
 };
 
-// Delete project and its files
 export const deleteProject = async (req, res) => {
   try {
     const { id } = req.params;
